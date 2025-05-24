@@ -29,8 +29,8 @@ struct HomeView: View {
 
           // MARK: GA2 - Prototype
           Section(header: Text("GA2 - Prototype")) {
-            Tile(title: "Sample", subtitle: "Nickname") {
-              router.push(.prototypeSample)
+            Tile(title: "VocieControl", subtitle: "Jeje") {
+              router.push(.vocieControl)
             }
           }
         }

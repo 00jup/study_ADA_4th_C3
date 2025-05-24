@@ -1,0 +1,13 @@
+{
+  "MLModelCreatorDefinedKey" : {
+    "com.apple.coreml.model.preview.type" : "soundClassifier",
+    "com.apple.createml.training.started" : "2025-05-24T05:30:51Z",
+    "com.apple.createml.version" : "15.5.0",
+    "com.apple.createml.training.finished" : "2025-05-24T05:30:57Z",
+    "com.apple.createml.app.tag" : "151.2",
+    "com.apple.createml.model.created" : "2025-05-24T05:30:57Z",
+    "sampleRate" : "16000",
+    "com.apple.createml.app.version" : "6.2"
+  },
+  "MLModelAuthorKey" : "박정욱"
+}

@@ -9,7 +9,7 @@ enum SubPage {
   case diary
   case todo
   case bucket
-  case prototypeSample
+  case vocieControl
 }
 
 struct RouterViewState {
