@@ -4,7 +4,5 @@ import AVFoundation
 import SwiftUI
 
 class ViewController: UIViewController {
-  
   var audioPlayer: AVAudioPlayer?
-  
 }

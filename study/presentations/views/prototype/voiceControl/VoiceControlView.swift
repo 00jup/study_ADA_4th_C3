@@ -9,7 +9,7 @@ struct VoiceControlView: View {
     ) { viewModel, _ in
       VStack {
         Toolbar(title: "VoiceControl")
-        
+
         VStack {
           HStack {
             Button {
@@ -22,11 +22,11 @@ struct VoiceControlView: View {
               Image(systemName: viewModel.isPlaying ? "pause.circle" : "play.circle")
                 .font(.largeTitle)
             } // Button
-            
+
             Slider(value: Binding(
               get: { viewModel.currentTime },
               set: { newValue in viewModel.currentTime = newValue }
-            ), in: 0...viewModel.totalTime) { editing in
+            ), in: 0 ... viewModel.totalTime) { editing in
               if editing {
                 if viewModel.isPlaying {
                   viewModel.pause()
@@ -37,7 +37,7 @@ struct VoiceControlView: View {
               }
             } // Slider
           } // HStack
-          
+
           HStack {
             Text("\(formatTime(viewModel.currentTime))")
             Spacer()
@@ -46,9 +46,9 @@ struct VoiceControlView: View {
         } // VStack
         .animation(.linear(duration: 0.1), value: viewModel.currentTime)
         .padding()
-        
+
         Spacer()
-        
+
         // 음성 인식 UI 추가
         VStack {
           Button {
@@ -62,9 +62,9 @@ struct VoiceControlView: View {
               .font(.largeTitle)
               .foregroundColor(viewModel.isListening ? .red : .blue)
               .padding()
-            
+
             Spacer()
-            
+
             Button {
               print("Clear button pressed - Before: isListening = \(viewModel.isListening)")
               viewModel.clearRecognizedText()
@@ -77,10 +77,7 @@ struct VoiceControlView: View {
             .disabled(viewModel.recognizedText.isEmpty)
             .padding()
           } // Button
-          
-          
-          
-          
+
           ScrollView {
             Text(viewModel.recognizedText.isEmpty ? "음성을 인식 중..." : viewModel.recognizedText)
               .padding()
@@ -91,12 +88,12 @@ struct VoiceControlView: View {
           .frame(height: 150)
         } // VStack
         .padding()
-        
+
         Spacer()
       } // VStack
     } // BaseView
   }
-  
+
   private func formatTime(_ time: TimeInterval) -> String {
     let seconds = Int(time) % 60
     let minutes = Int(time) / 60
