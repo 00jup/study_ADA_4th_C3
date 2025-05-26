@@ -21,7 +21,7 @@ struct VoiceControlView: View {
             } label: {
               Image(systemName: viewModel.isPlaying ? "pause.circle" : "play.circle")
                 .font(.largeTitle)
-            } // Button
+            }
 
             Slider(value: Binding(
               get: { viewModel.currentTime },
@@ -35,22 +35,21 @@ struct VoiceControlView: View {
                 viewModel.player?.currentTime = viewModel.currentTime
                 viewModel.play()
               }
-            } // Slider
-          } // HStack
+            }
+          }
 
           HStack {
             Text("\(formatTime(viewModel.currentTime))")
             Spacer()
             Text("\(formatTime(viewModel.totalTime))")
-          } // HStack
-        } // VStack
+          }
+        }
         .animation(.linear(duration: 0.1), value: viewModel.currentTime)
         .padding()
 
         Spacer()
 
-        // 음성 인식 UI 추가
-        VStack {
+        VStack(spacing: 8) {
           Button {
             if viewModel.isListening {
               viewModel.stopListening()
@@ -62,21 +61,17 @@ struct VoiceControlView: View {
               .font(.largeTitle)
               .foregroundColor(viewModel.isListening ? .red : .blue)
               .padding()
+          }
 
-            Spacer()
-
-            Button {
-              print("Clear button pressed - Before: isListening = \(viewModel.isListening)")
-              viewModel.clearRecognizedText()
-              print("Clear button pressed - After: isListening = \(viewModel.isListening)")
-            } label: {
-              Image(systemName: "trash")
-                .font(.title2)
-                .foregroundColor(.red)
-            }
-            .disabled(viewModel.recognizedText.isEmpty)
-            .padding()
-          } // Button
+          Button {
+            viewModel.clearRecognizedText()
+          } label: {
+            Image(systemName: "trash")
+              .font(.title2)
+              .foregroundColor(.red)
+          }
+          .disabled(viewModel.recognizedText.isEmpty)
+          .padding()
 
           ScrollView {
             Text(viewModel.recognizedText.isEmpty ? "음성을 인식 중..." : viewModel.recognizedText)
@@ -84,14 +79,22 @@ struct VoiceControlView: View {
               .frame(maxWidth: .infinity, alignment: .leading)
               .background(Color.gray.opacity(0.1))
               .cornerRadius(8)
-          } // ScrollView
+          }
           .frame(height: 150)
-        } // VStack
-        .padding()
+
+          VStack(spacing: 4) {
+            Text("예측 결과: \(viewModel.predictedLabel)")
+              .font(.headline)
+
+            Text(String(format: "정확도: %.2f%%", viewModel.confidence * 100))
+              .font(.subheadline)
+          }
+          .padding(.top, 8)
+        }
 
         Spacer()
-      } // VStack
-    } // BaseView
+      }
+    }
   }
 
   private func formatTime(_ time: TimeInterval) -> String {
