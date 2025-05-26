@@ -32,6 +32,9 @@ struct HomeView: View {
             Tile(title: "VocieControl", subtitle: "Jeje") {
               router.push(.vocieControl)
             }
+            Tile(title: "Guitar Chord", subtitle: "Detection") {
+              router.push(.guitarChord)
+            }
           }
         }
       }

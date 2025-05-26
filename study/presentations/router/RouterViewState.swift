@@ -10,6 +10,7 @@ enum SubPage {
   case todo
   case bucket
   case vocieControl
+  case guitarChord
 }
 
 struct RouterViewState {

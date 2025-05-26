@@ -28,6 +28,7 @@ struct RouterView: View {
           case .todo: TodoView()
           case .bucket: BucketView()
           case .vocieControl: VoiceControlView()
+          case .guitarChord: GuitarChordDetectionView()
           }
         }
         .toolbarBackground(.hidden, for: .navigationBar)
